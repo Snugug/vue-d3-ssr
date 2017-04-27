@@ -1,22 +1,20 @@
-import Vue from 'vue';
+import counter from './counter';
+import radarOptions from '../data/radar';
 
 const app = new Vue({
-  template: '<div id="app">You have been here for <span>{{ counter }}</span> seconds.</div>',
-    data: {
-      counter: 0
-    },
-    created: function () {
-      const vm = this;
-      setInterval(() => {
-        vm.counter += 1;
-      }, 1000);
+  el: '#app',
+  components: {
+    counter,
+  },
+  data: function () {
+    return {
+      data: radarOptions.data,
+      options: radarOptions.config,
     }
+  },
 });
 
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = app;
-}
-else if (typeof window !== 'undefined') {
-  window.app = app;
 }

@@ -1,10 +1,13 @@
 'use strict';
 
+import vue from 'vue';
 import { createRenderer } from 'vue-server-renderer';
 import express from 'express';
 
 import { readFileSync } from 'fs';
 import path from 'path';
+
+global.Vue = vue;
 
 // Rollup Madness!
 const rollup = require('rollup');
@@ -19,10 +22,12 @@ let cache;
 rollup.rollup({
   entry: 'src/app.js',
   plugins: [
+    rollupInject({
+      Vue: 'vue/dist/vue.esm.js',
+    }),
     rollupReplace({
       'process.env.NODE_ENV': JSON.stringify('development'),
       'process.env.VUE_ENV': JSON.stringify('browser'),
-      '\'vue\'': JSON.stringify('vue/dist/vue.esm.js'),
     }),
     rollupNode(),
     rollupCommon(),
