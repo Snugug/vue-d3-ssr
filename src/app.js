@@ -1,10 +1,12 @@
-import counter from './counter';
+import radar from '../lib/radar';
 import radarOptions from '../data/radar';
 
 const app = new Vue({
-  el: '#app',
+  template: `<div id="app">
+    <radar :data="data" :options="options"></radar>
+  </div>`,
   components: {
-    counter,
+    radar,
   },
   data: function () {
     return {

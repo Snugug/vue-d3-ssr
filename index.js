@@ -28,6 +28,7 @@ rollup.rollup({
     rollupReplace({
       'process.env.NODE_ENV': JSON.stringify('development'),
       'process.env.VUE_ENV': JSON.stringify('browser'),
+      '\'../lib/radar\'': JSON.stringify('./radar'),
     }),
     rollupNode(),
     rollupCommon(),
